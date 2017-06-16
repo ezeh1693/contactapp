@@ -1,0 +1,34 @@
+{#A snippet to be included by all view files that want to handle pagination#}
+<div class="page-navigation-cn">
+    <ul class="pagination">
+
+
+        <li class="first"><a href="{{ request.requestURI | fullUrl(0, request.queryString) }}">First</a></li>
+        {% if pager.hasPrev %}
+            <li class=""><a href="{{ request.requestURI | fullUrl(pager.page - 1, request.queryString) }}">Prev</a></li>
+        {% endif %}
+
+        {%if pager.list|first != 1 %}
+             <li><a>...</a></li>
+        {% endif %}
+
+        {% for page in pager.list %}
+            {% if page == pager.page  %}
+                <li class="current"><a href="#">{{ page }}</a></li>
+            {% else %}
+                <li><a href="{{ request.requestURI | fullUrl(page, request.queryString) }}">{{ page }}</a></li>
+            {% endif %}
+
+        {% endfor %}
+
+        {%if pager.list|last < pager.totalPages %}
+            <li><a>...</a></li>
+        {% endif %}
+
+        {% if pager.hasNext %}
+            <li class=""><a href="{{ request.requestURI | fullUrl(pager.page + 1, request.queryString) }}">Next</a></li>
+        {% endif %}
+        <li class="last"><a href="{{ request.requestURI | fullUrl(pager.totalPages - 1, request.queryString) }}">Last</a></li>
+
+    </ul>
+</div>

@@ -1,0 +1,4 @@
+
+"((js|css|img|font-awesome)/.*(\.css|\.jpg|\.png|\.js))"
+
+"{{ asset '$1' }}"

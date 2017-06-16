@@ -1,0 +1,117 @@
+
+{#A view file where a new account is being entered into the system#}
+{% extends "../crud_base.twig" %}
+{% block content %}
+    <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        <h2>
+            {% if edit %}
+                Editing {{ account.name }}
+            {% else %}
+                New Account
+            {% endif %}
+        </h2>
+
+
+        <div class="ibox-content m-b-sm border-bottom">
+            <form class="m-t" role="form" action="
+            {% if edit %}
+            {{ '/accounts?edit' | path }}
+            {% else %}
+            {{ '/accounts?new' | path }}
+            {% endif %}
+            " method="POST">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="account_name"> Name</label>
+                            <input type="text" id="account_name" name="name" value="{{ account.name|default('') }}"
+                                   placeholder="Name" class="form-control">
+                            <span class="text-danger">{{ errors.name }}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="account_email"> Email</label>
+                            <input type="email" id="account_email" name="email" value="{{ account.email|default('') }}"
+                                   placeholder="Email" class="form-control">
+                            <span class="text-danger">{{ errors.email }}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="account_phone"> Phone</label>
+                            <input type="tel" id="account_phone" name="phone" value="{{ account.phone|default('') }}"
+                                   placeholder="Phone" class="form-control">
+                            <span class="text-danger">{{ errors.phone }}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="">
+                            <label class="control-label" for="account_active"> Active</label>
+
+                            <input type="checkbox" name="active" id="account_active" class="js-switch"
+                                    {% if account.active %}
+                                        checked
+                                    {% endif %}
+
+                                    />
+                            <span class="text-danger">{{ errors.active }}</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="account_password"> Password</label>
+                            <input type="password" id="account_password" name="password"
+                                   value="{{ account.password|default('') }}"
+                                   placeholder="Password" class="form-control">
+                            <span class="text-danger">{{ errors.password }}</span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Account Type *</label>
+                            <select name="accountType" id="acc_Type" class="form-control">
+                                <option value="">-- Select--</option>
+                                {% for aType in accountTypes %}
+                                    <option {% if account.accountType == aType %} selected {% endif %}
+                                            value="{{ aType }}">{{ aType }}</option>
+                                {% endfor %}
+
+                            </select>
+                            <span class="text-danger">{{ errors.accountType }}</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-12">
+                        <input type="hidden" name="id" value="{{ account.id }}"><br />
+                        <div class="form-group">
+                            {% if edit %}
+                                <button class="btn btn-primary " type="submit"><i class="fa fa-paste"></i> Edit</button>
+                            {% else %}
+                                <button class="btn btn-primary " type="submit"><i class="fa fa-check"></i> Submit</button>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

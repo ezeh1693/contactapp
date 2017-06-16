@@ -1,0 +1,52 @@
+ .datepicker{
+    z-index: 1151 !important;
+}
+
+
+.marg-top{
+    margin-top: 10px!important;
+}
+
+.marg-bottom{
+    margin-bottom: 10px!important;
+}
+
+.marg-left{
+    margin-left: 10px!important;
+}
+
+.marg-right{
+    margin-right: 10px!important;
+}
+
+.border-none{
+    border:none!important;
+}
+
+
+ ul.token-input-list-facebook
+ {
+     width:100%!important;
+ }
+
+
+ .table-generic tr td:nth-child(2n+1){
+
+     width:20%;
+ }
+
+ .table-generic tr td:nth-child(2n){
+     width:30%;
+ }
+
+ .datepicker{
+     z-index:1151 !important;
+ }
+
+ .ui-datepicker{ z-index:1151 !important; }
+
+ .edittable_form{}
+
+ .edittable_form input{
+     padding:10px;
+ }
